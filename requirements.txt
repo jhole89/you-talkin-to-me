@@ -1,0 +1,2 @@
+ChatterBot==0.7.6
+pytest==3.2.3
