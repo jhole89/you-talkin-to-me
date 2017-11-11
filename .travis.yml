@@ -1,19 +1,27 @@
 language: python
+
 python:
   - "3.6"
   - "nightly"
+
 env:
   - PYTHONPATH=$PYTHONPATH:$(pwd)
+
 install:
   - pip install -r requirements.txt
-  - pip install pep8
+  - pip install
+  - pip install coveralls
+
 script:
   - pep8 . --max-line-length=119
-  - cd tests
-  - pytest
+  - python -m pytest
+
 matrix:
   fast_finish: true
   allow_failures:
     - python: "nightly"
+
+after_success: coveralls
+
 notifications:
   email: false

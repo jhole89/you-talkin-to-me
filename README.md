@@ -2,6 +2,8 @@
 
 An AI chatbot 'Swan Ronson' trained using movie quotes
 
+[![Build Status](https://travis-ci.org/jhole89/you-talkin-to-me.svg?branch=master)](https://travis-ci.org/jhole89/you-talkin-to-me)
+[![Coverage Status](https://coveralls.io/repos/github/jhole89/you-talkin-to-me/badge.svg?branch=master)](https://coveralls.io/github/jhole89/you-talkin-to-me?branch=master)
 
 ## Acknowledgments
 
