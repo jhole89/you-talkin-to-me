@@ -7,4 +7,4 @@ def test_run(capfd):
 
     out, err = capfd.readouterr()
 
-    assert out.splitlines()[-1] == 'How are you?'
+    assert out.splitlines()[-1] == "Me too"
