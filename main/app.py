@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from chatterbot import ChatBot
 import gzip
 import os
@@ -15,40 +16,49 @@ def _preprocess():
             line_dict = {
                 'line_id': line_array[0].strip(),
                 'reply_id': line_array[4].strip(),
-                'text': line_array[5].rstrip('\n').strip()
+                'text': line_array[5].rstrip('\n').strip().lower()
             }
 
             if line_dict['reply_id']:
-                if int(line_dict['reply_id']) - 1 == int(line_dict['line_id']):
-                    all_conversations[-1].append(line_dict['line_id'] + '---' + line_dict['text'])
+                if int(line_dict['reply_id']) + 1 == int(line_dict['line_id']):
+                    all_conversations[-1].append(line_dict['text'])
             else:
                 all_conversations.append([line_dict['text']])
 
         return all_conversations
 
 
-def run():
+def run(train):
 
     chatbot = ChatBot(
-        name='Swan Ronson',
-        trainer='chatterbot.trainers.ListTrainer')
+        name='Arnold Schwarzenatter',
+        trainer='chatterbot.trainers.ListTrainer',
+        storage_adapter='chatterbot.storage.SQLStorageAdapter',
+        logic_adapters=[
+            {
+                'import_path': 'chatterbot.logic.BestMatch'
+            },
+            {
+                'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+                'threshold': 0.5,
+                'default_response': 'I am sorry, I don\'t understand right now'
+            },
+        ],
+        filters=["chatterbot.filters.RepetitiveResponseFilter"]
+    )
 
-    training_dialog = _preprocess()
+    if train:
 
-    print(training_dialog)
+        training_dialog = _preprocess()
 
-    chatbot.train([
-        "Hi",
-        "How are you?",
-        "I'm fine",
-        "Me too"
-    ])
+        for conversation in training_dialog:
+            if len(conversation) > 7:
+                chatbot.train(conversation)
 
-    # Get a response to the input text 'How are you?'
-    response = chatbot.get_response("I'm fine")
+    response = chatbot.get_response("hi")
 
     print(response)
 
 
 if __name__ == '__main__':
-    run()
+    run(train=False)
