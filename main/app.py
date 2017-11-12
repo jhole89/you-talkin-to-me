@@ -5,7 +5,7 @@ import os
 
 def _preprocess():
     with gzip.open(
-            os.path.join('resources', 'moviequotes.scripts.txt.gz'), 'rt', encoding='latin-1') as gz_file:
+            os.path.join('main', 'resources', 'moviequotes.scripts.txt.gz'), 'rt', encoding='latin-1') as gz_file:
 
         all_conversations = []
 
