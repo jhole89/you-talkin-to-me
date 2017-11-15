@@ -1,10 +1,13 @@
-from main.app import run
+from app.controllers import create_chatbot
 
 
-def test_run(capfd):
+def test_create_chatbot(capfd):
 
-    run(train=False)
+    name = 'Testy McTesterson'
+
+    chatbot = create_chatbot(name)
 
     out, err = capfd.readouterr()
 
-    assert out.splitlines()[-1] == 'I am sorry, I don\'t understand right now'
+    assert out.splitlines()[-1].split()[-1] == '100%'
+    assert chatbot.name == name

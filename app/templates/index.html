@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/app/static/style.css">
+</head>
+<body>
+
+<h1><a href="https://github.com/jhole89/you-talkin-to-me">Arnold Schwartzenatter</a></h1>
+<h3>A web chatbot trained using movie quotes!</h3>
+
+<p>
+<h4>Usage example:</h4>
+<ul>
+    <li><b>GET:</b> <a href="/question/how are you?">/question/how are you?</a></li>
+    <ul>
+        <li>Browser handles spaces (<a href="/question/how%20are%20you?">/question/how%20are%20you?</a>)</li>
+        <li>Returns raw response (ex: I am good).</li>
+    </ul>
+    <li><b>POST:</b> /admin/retrain/ body/JSON: {"conversation_length": int, "stop_short": int}: </li>
+    <ul>
+        <li>Retrain's chatbot with parameters:</li>
+        <ul>
+            <li>conversation_length - <i>the minimum number of statements required in
+                each conversation</i></li>
+            <li>stop_short - <i>a maximum limit of how many conversations to train on</i></li>
+        </ul>
+        <li>Returns response of training (ex: Retrained with parameters: {'conversation_length': 5, 'stop_short': 10000}".</li>
+  </ul>
+</ul>
+</p>
+
+<p>
+<h4>Contributing:</h4>
+<ul>
+    Project is hosted on <a href="https://github.com/jhole89/you-talkin-to-me">GitHub</a>.
+</ul>
+</p>
+
+
+</body>
+</html>
