@@ -19,13 +19,13 @@ def home():
 
 
 @app.route('/question/<string:query>')
-def get_raw_response(query):
+def get_response(query):
     """
     API endpoint for /question/
     :param query: string query to send to chatbot
-    :return: raw html response from chatbot with given query
+    :return: Flask.Response object wrapping result from chatbot with given query
     """
-    return str(chatbot.get_response(query))
+    return Response(str(chatbot.get_response(query)), status=200)
 
 
 @app.route('/admin/retrain', methods=['POST'])

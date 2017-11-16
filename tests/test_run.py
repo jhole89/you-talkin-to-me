@@ -33,9 +33,9 @@ def test_home(client):
     assert list(req.headers) == [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', '1273')]
 
 
-def test_get_raw_response(client):
+def test_get_response(client):
     """
-    Test case for app.run.get_raw_response
+    Test case for app.run.get_response
     :param client: instance of app.run from conftest
     :return: None
     """
