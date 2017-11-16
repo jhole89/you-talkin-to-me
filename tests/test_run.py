@@ -3,17 +3,30 @@ import json
 
 
 def test_app():
+    """
+    Test case for app.run.app
+    :return: None
+    """
 
     assert app is not None
     assert type(app) == Flask
 
 
 def test_chatbot():
+    """
+    Test case for app.run.chatbot
+    :return: None
+    """
 
     assert chatbot.name == 'Arnold Schwartzenatter'
 
 
 def test_home(client):
+    """
+    Test case for app.run.home
+    :param client: instance of app.run from conftest
+    :return: None
+    """
     req = client.get('/')
 
     assert req.status_code == 200
@@ -21,6 +34,11 @@ def test_home(client):
 
 
 def test_get_raw_response(client):
+    """
+    Test case for app.run.get_raw_response
+    :param client: instance of app.run from conftest
+    :return: None
+    """
     req = client.get('/question/who%20are%20you')
 
     assert req.status_code == 200
@@ -28,6 +46,11 @@ def test_get_raw_response(client):
 
 
 def test_retrain_corpus(client):
+    """
+    Test case for app.run.retrain_corpus
+    :param client: instance of app.run from conftest
+    :return: None
+    """
 
     headers = {
         'Content-Type': 'application/json'

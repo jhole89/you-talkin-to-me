@@ -4,6 +4,11 @@ import os
 
 
 def create_chatbot(name):
+    """
+    Creates chatbot instance and pre-trains name
+    :param name: str name of chatbot
+    :return: instance of Chatterbot.Chatbot
+    """
 
     # Instantiate chatbot
     chatbot = ChatBot(
@@ -31,6 +36,13 @@ def create_chatbot(name):
 
 
 def process_quotes(static_file, delimiter):
+    """
+    Extract and Transform local file into list of conversations join by line_id<->reply_id
+    :param static_file: gz file stored in app.static
+    :param delimiter: delimiter used for static file
+    :return: list[list[str]] of collections of conversations
+    """
+
     with gzip.open(
             os.path.join('app', 'static', static_file), 'rt', encoding='latin-1') as gz_file:
 

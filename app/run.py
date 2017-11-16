@@ -11,16 +11,29 @@ chatbot = create_chatbot(name='Arnold Schwartzenatter')
 
 @app.route('/')
 def home():
+    """
+    API endpoint for home /
+    :return: rendered index.html page
+    """
     return render_template("index.html")
 
 
 @app.route('/question/<string:query>')
 def get_raw_response(query):
+    """
+    API endpoint for /question/
+    :param query: string query to send to chatbot
+    :return: raw html response from chatbot with given query
+    """
     return str(chatbot.get_response(query))
 
 
 @app.route('/admin/retrain', methods=['POST'])
 def retrain_corpus():
+    """
+    API endpoint for /admin/retrain. Should take a json object of body {"conversation_length": int, "stop_short": int}
+    :return: Flask.Response object
+    """
 
     all_conversations = process_quotes(
         static_file='moviequotes.scripts.txt.gz',
