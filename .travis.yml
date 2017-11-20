@@ -20,7 +20,8 @@ matrix:
   allow_failures:
     - python: "nightly"
 
-after_success: coveralls
-
 notifications:
   email: false
+
+after_success:
+  - coveralls
